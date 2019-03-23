@@ -2,7 +2,7 @@ typedef vector< Point > Polygon;
 
 // Convex Hull:
 // If minimum point --> #define REMOVE_REDUNDANT
-// If maximum point --> no need to change.
+// If maximum point --> need to change >= and <= to > and < (see Note).
 // Known issues:
 // - Max. point does not work when some points are the same.
 // Tested:
@@ -23,6 +23,7 @@ void ConvexHull(vector<Point> &pts) {
     pts.erase(unique(pts.begin(), pts.end()), pts.end());
     vector<Point> up, dn;
     for (int i = 0; i < pts.size(); i++) {
+        // Note: If need maximum points on convex hull, need to change >= and <= to > and <.
         while (up.size() > 1 && area2(up[up.size()-2], up.back(), pts[i]) >= 0) up.pop_back();
         while (dn.size() > 1 && area2(dn[dn.size()-2], dn.back(), pts[i]) <= 0) dn.pop_back();
         up.push_back(pts[i]);

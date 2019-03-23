@@ -1,10 +1,11 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 // Hungarian Assignment
 // Note: 
 // - Vertex indexed from #0
 // - Change INF and int to long long (if needed) 
+//
+// Tested:
+// - SGU 210
+// - SGU 206
 
 class PerfectMatchingMinCost {
 private:
@@ -34,7 +35,7 @@ private:
     int findPath() {
         while (!q.empty()) {
             int x = q.front(); q.pop();
-            for (int i = 0; i < adj[x].size(); i++) {
+            for (int i = 0; i < (int) adj[x].size(); i++) {
                 int y = adj[x][i];
                 if (trace[y] == -1) {
                     int w = getCost(x, y);
@@ -95,7 +96,7 @@ public:
 
         trace = VI(n);
         arg = VI(n);
-        fx = VI(n);
+        fx = VI(n, -INF);
         fy = VI(n);
         d = VI(n);
         mx = VI(n, -1);
